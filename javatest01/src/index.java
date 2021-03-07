@@ -5,5 +5,7 @@ public class index {
             a += i;
             System.out.print(a + " ");
         }
+        String abc =  " ";
+        System.out.print(abc+"sss");
     }
 }
