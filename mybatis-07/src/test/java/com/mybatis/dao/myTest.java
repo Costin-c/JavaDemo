@@ -6,6 +6,7 @@ import com.mybatis.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -81,4 +82,39 @@ public class myTest {
             System.out.println(blog);
         }
     }
+
+    @Test
+    public void queryBlogIFTest2(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
+
+        HashMap map = new HashMap();
+        // map.put("title", "Java如此简单");
+        map.put("author", "张三");
+        List<Blog> blogList = mapper.queryBlogIF2(map);
+
+        for (Blog blog : blogList) {
+            System.out.println(blog);
+        }
+    }
+
+    @Test
+    public void queryBlogForeach(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
+
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+        ids.add(4);
+        ids.add(3);
+        ids.add(2);
+
+        HashMap map = new HashMap();
+        map.put("ids", ids);
+
+        List<Blog> blogs = mapper.queryBlogForeach(map);
+        for (Blog blog : blogs) {
+            System.out.println(blog);
+        }
+    }
+
 }
